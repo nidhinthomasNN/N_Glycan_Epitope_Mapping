@@ -1,0 +1,27 @@
+-preserve_header 1
+
+-parser_read_cloud_pdb 1
+
+-packing
+
+-use_input_sc
+
+-ex1
+
+-ex2
+
+-ex1aro
+
+-ex2aro
+
+-linmem_ig 10
+
+-no_optH false
+
+-flip_HNQ
+
+-no_his_his_pairE
+
+-nblist_autoupdate
+
+-ignore_zero_occupancy false

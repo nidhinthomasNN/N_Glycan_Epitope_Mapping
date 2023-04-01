@@ -1,0 +1,35 @@
+<ROSETTASCRIPTS> 
+	<TASKOPERATIONS> 
+		<InitializeFromCommandline name="init"/> 
+		<ReadResfile name="res" filename="resfile"/>
+		<LimitAromaChi2 name="limchi2"/> 
+	</TASKOPERATIONS> 
+	<SCOREFXNS> 
+		<ScoreFunction name="enzdes" weights="talaris2013_cst"/>
+		<ScoreFunction name="enzdes_eng" weights="talaris2013"/>	
+	</SCOREFXNS> 
+	<MOVERS> 
+		<AddOrRemoveMatchCsts name="addcst" cstfile="CSTFILE.cst" cst_instruction="add_new"/> 
+		# Minimization of complex - no design allowed 
+		<TaskAwareMinMover name="min" bb="0" chi="1" jump="1" scorefxn="enzdes" task_operations="init"/> 
+		# Packing of rotamers making sure no aromatic with chi2 of 90 degrees 
+		<PackRotamersMover name="repack" scorefxn="enzdes" task_operations="init,limchi2,res"/>
+		<ParsedProtocol name="min_repack_min"> 
+			<Add mover="min"/>
+			<Add mover="repack"/>  
+			<Add mover="min"/> 
+		</ParsedProtocol> 
+	</MOVERS> 
+	<FILTERS> 
+		<EnzScore name="cst_score" scorefxn="enzdes" whole_pose="1" score_type="cstE" 
+			energy_cutoff="30.0"/>
+		<LigInterfaceEnergy name="energy_score" scorefxn="enzdes_eng" include_cstE="0" energy_cutoff="0.0"/>
+	</FILTERS> 
+	<PROTOCOLS> 
+		<Add mover="addcst"/> 
+		<Add mover="min_repack_min"/> 
+		<Add filter="cst_score"/> 
+    <Add filter="energy_score"/>
+	</PROTOCOLS> 
+	<OUTPUT scorefxn="enzdes"/> 
+</ROSETTASCRIPTS> 

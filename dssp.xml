@@ -1,0 +1,28 @@
+<ROSETTASCRIPTS>
+<SCOREFXNS>
+  <ScoreFunction name="enzdes" weights="talaris2013"/>
+  <soft weights="ligand_soft_rep"/>
+</SCOREFXNS>
+<TASKOPERATIONS>
+  <InitializeFromCommandline name="init"/>
+  <SetIGType name="linmem_ig" lin_mem_ig="1"/>
+  <LimitAromaChi2 name="limchi2"/>
+</TASKOPERATIONS>
+<FILTERS>
+</FILTERS> 
+<MOVERS> 
+  # Minimization of complex - no design allowed 
+  <TaskAwareMinMover name="min" bb="0" chi="1" jump="1" scorefxn="enzdes" task_operations="init"/> 
+  # Packing of rotamers making sure no aromatic with chi2 of 90 degrees 
+  <PackRotamersMover name="repack" scorefxn="enzdes" task_operations="init,limchi2"/> 
+  <ParsedProtocol name="min_repack_min"> 
+    <Add mover="min"/> 
+    <Add mover="repack"/> 
+    <Add mover="min"/> 
+  </ParsedProtocol> 
+  <Dssp name="dssp" reduced_IG_as_L="0"/> 
+</MOVERS> 
+<PROTOCOLS> 
+  <Add mover_name="dssp"/> 
+</PROTOCOLS> 
+</ROSETTASCRIPTS> 
