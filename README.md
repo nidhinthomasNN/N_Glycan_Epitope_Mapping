@@ -1,6 +1,6 @@
 # N_Glycan_Epitope_Mapping
 
-This repository describes the workflow for the computational modeling of glycoslylation of protein residues using Rosetta Matcher Protocol. 
+This repository describes the workflow for the computational modeling of glycoslylation of protein residues using Rosetta Matcher Protocol. The article is now published in Protein Science. (https://onlinelibrary.wiley.com/doi/abs/10.1002/pro.4726)
 
 ## Predict loop structure for matching
 
