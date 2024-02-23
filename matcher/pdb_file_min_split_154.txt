@@ -1,5 +1,0 @@
-./UM_5_N131_1rfn_relaxed_CSTFILE_1.pdb
-./UM_159_N119_1rfn_relaxed_CSTFILE_1.pdb
-./UM_518_N39_1rfn_relaxed_CSTFILE_1.pdb
-./UM_517_N175_1rfn_relaxed_CSTFILE_1.pdb
-./UM_649_N142_1rfn_relaxed_CSTFILE_1.pdb

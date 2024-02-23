@@ -1,7 +1,6 @@
 <ROSETTASCRIPTS>
 <SCOREFXNS>
   <ScoreFunction name="enzdes" weights="talaris2013"/>
-  <soft weights="ligand_soft_rep"/>
 </SCOREFXNS>
 <TASKOPERATIONS>
   <InitializeFromCommandline name="init"/>
